@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose")
+
 
 // Import the dependencies
 const { Schema, model } = require( 'mongoose' );
