@@ -1,5 +1,20 @@
 const $pizzaList = document.querySelector('#pizza-list');
 
+// Get the list of all pizzas in the database
+const getPizzaList = () => {
+  fetch('/api/pizzas')
+    .then(response => response.json())
+    .then(pizzaListArr => {
+      pizzaListArr.forEach(printPizza);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dump out the data for one pizza
 const printPizza = ({ _id, pizzaName, toppings, size, commentCount, createdBy, createdAt }) => {
   const pizzaCard = `
     <div class="col-12 col-lg-6 flex-row">
@@ -26,3 +41,7 @@ const printPizza = ({ _id, pizzaName, toppings, size, commentCount, createdBy, c
 
   $pizzaList.innerHTML += pizzaCard;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// Invoke the 'getPizzaList' function when the application loads
+getPizzaList();
