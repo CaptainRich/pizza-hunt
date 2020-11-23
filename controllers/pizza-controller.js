@@ -59,8 +59,8 @@ const pizzaController = {
     /////////////////////////////////////////////////////////////////////////////////////
     // Update a pizza by ID
     updatePizza({ params, body }, res) {                
-
-        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })    // "new:true" indicates return new version
+                                                      // "new:true" indicates return new version
+        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })    
           .then(dbPizzaData => {
             if (!dbPizzaData) {
               res.status(404).json({ message: 'No pizza found with this id!' });
